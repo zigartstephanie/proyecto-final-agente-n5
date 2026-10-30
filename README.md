@@ -4,16 +4,16 @@ Proyecto final del curso de automatización con IA: un agente en **n8n** que ati
 
 > Prototipo independiente con **clientes ficticios**. No se conecta a ningún sistema real de N5: los datos viven en una Google Sheet de prueba y el canal de WhatsApp se simula con un Webhook.
 
-![Canvas del workflow](capturas/01-canvas.png)
+![Canvas del workflow](01-canvas.png)
 
 ## Contenido del repositorio
 
 | Archivo | Qué es |
 |---|---|
 | `workflow-agente-whatsapp-n5.json` | Workflow exportado de n8n (sin credenciales) |
-| `datos/proyectos-demo.csv` | Datos de prueba de la pestaña *Proyectos* de la Google Sheet |
-| `pruebas/mensajes-de-prueba.sh` | Los 5 mensajes de prueba (curl) que simulan WhatsApp |
-| `capturas/` | Canvas, ejecuciones y planillas resultantes |
+| `proyectos-demo.csv` | Datos de prueba de la pestaña *Proyectos* de la Google Sheet |
+| `mensajes-de-prueba.sh` | Los 5 mensajes de prueba (curl) que simulan WhatsApp |
+| `01-canvas.png` … `04-pruebas-2-a-5.png` | Capturas del canvas y de las ejecuciones de prueba |
 
 ---
 
@@ -223,7 +223,7 @@ Además: el agente tiene un máximo de 6 iteraciones (evita loops de herramienta
 
 ## 7. Pruebas
 
-Los 5 mensajes están en `pruebas/mensajes-de-prueba.sh`.
+Los 5 mensajes están en `mensajes-de-prueba.sh`.
 
 Todas las pruebas se corrieron el 30/10/2026 con n8n local, Ollama `qwen2.5:7b` y la Google Sheet de prueba. Los textos son los que quedaron registrados en la pestaña **Bitácora**.
 
@@ -246,11 +246,11 @@ Todas las pruebas se corrieron el 30/10/2026 con n8n local, Ollama `qwen2.5:7b` 
 
 | Canvas con ejecución exitosa | El agente llamando a `verificar_sitio` (devuelve 503) |
 |---|---|
-| ![Canvas](capturas/01-canvas.png) | ![verificar_sitio](capturas/02-ejecucion-verificar-sitio.png) |
+| ![Canvas](01-canvas.png) | ![verificar_sitio](02-ejecucion-verificar-sitio.png) |
 
 | Prueba 1 | Pruebas 2 a 5 |
 |---|---|
-| ![Prueba 1](capturas/03-prueba-1-consulta.png) | ![Pruebas 2 a 5](capturas/04-pruebas-2-a-5.png) |
+| ![Prueba 1](03-prueba-1-consulta.png) | ![Pruebas 2 a 5](04-pruebas-2-a-5.png) |
 
 ### Qué aprendí de las pruebas
 
@@ -267,13 +267,13 @@ Todas las pruebas se corrieron el 30/10/2026 con n8n local, Ollama `qwen2.5:7b` 
 
 1. Descargá el modelo: `ollama pull qwen2.5:7b`
 2. Creá una Google Sheet con tres pestañas:
-   - **Proyectos:** con los datos de `datos/proyectos-demo.csv`. Formateá la columna `telefono` como texto.
+   - **Proyectos:** con los datos de `proyectos-demo.csv`. Formateá la columna `telefono` como texto.
    - **Pedidos:** con las columnas `fecha, telefono, cliente, categoria, detalle, estado`.
    - **Bitacora:** con las columnas `fecha, telefono, cliente, mensaje, respuesta, derivar_a_humano, motivo, herramientas_usadas, registro_respaldo, categoria`.
 3. En n8n, importá `workflow-agente-whatsapp-n5.json` y cambiá el ID de la planilla en los cuatro nodos de Google Sheets por el de la tuya.
 4. Configurá las credenciales:
    - **Google Sheets OAuth2:** un OAuth Client de Google Cloud con las APIs de Sheets y Drive habilitadas y el redirect `http://localhost:5678/rest/oauth2-credential/callback`.
    - **Ollama:** Base URL `http://127.0.0.1:11434`.
-5. Tocá **Execute workflow** y mandá los mensajes de `pruebas/mensajes-de-prueba.sh`.
+5. Tocá **Execute workflow** y mandá los mensajes de `mensajes-de-prueba.sh`.
 
 > **Seguridad:** el `.json` no incluye credenciales (n8n no las exporta) ni API keys escritas a mano en los nodos.
