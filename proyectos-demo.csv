@@ -1,0 +1,4 @@
+telefono,cliente,servicio,etapa,avance,pendiente_cliente,proximo_paso,fecha_estimada,sitio,project_manager
+5491100000000,Charter Aéreo Demo,Sitio web nuevo (Webflow),"Diseño, ronda 1 de revisiones (1 de 2 rondas usadas)",55%,Enviar las fotos de la flota y el logo en alta resolución,Aplicar los cambios de la ronda 1 y presentar la versión 2 del diseño,06/11/2026,https://example.com,Jack
+5491122223333,Inmobiliaria Demo,SEO mensual + mantenimiento web,Mes 2: contenido y optimización on-page,en curso,Aprobar los textos de 3 páginas de barrios,Publicar las páginas aprobadas y enviar el reporte mensual,05/11/2026,https://httpbin.org/status/503,Amir
+5491144445555,Clínica Dental Demo,Sitio web nuevo (Webflow),Control de calidad previo a la publicación,90%,Darnos acceso al dominio (DNS) para publicar,Publicar el sitio apenas tengamos el acceso,depende del acceso al dominio,https://example.org,Jack
